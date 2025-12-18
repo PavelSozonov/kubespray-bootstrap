@@ -58,7 +58,7 @@ cp env.template .env
 - `INVENTORY_PATH` - путь к рабочему инвентарю (по умолчанию `inventory/cluster`)
 - `KUBE_VIP_VIP` - VIP адрес для kube-vip (например, `10.0.0.100`)
 - `KUBE_VIP_INTERFACE` - сетевой интерфейс для kube-vip (например, `eth0`)
-- `KUBERNETES_VERSION` - версия Kubernetes (по умолчанию `v1.32.0`)
+- `KUBERNETES_VERSION` - версия Kubernetes (по умолчанию `1.32.0`)
 - `KUBESPRAY_TAG` - тег/ветка Kubespray (по умолчанию `release-2.29`)
 
 #### 2.2. Создать inventory
@@ -432,7 +432,7 @@ kubectl logs -n kube-system -l k8s-app=calico-node
 
 Версии по умолчанию (можно изменить в `.env`):
 
-- **Kubernetes**: v1.32.0
+- **Kubernetes**: 1.32.0
 - **Kubespray**: release-2.29 (v2.29.1)
 - **Calico**: v3.26.0
 

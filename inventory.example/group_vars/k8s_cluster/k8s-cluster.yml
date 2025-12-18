@@ -2,11 +2,11 @@
 # Copy this to inventory/cluster/group_vars/k8s_cluster/k8s-cluster.yml
 
 # Kubernetes version (should match .env KUBERNETES_VERSION)
-kube_version: v1.32.0
+kube_version: 1.32.0
 
 # CNI: Calico
 kube_network_plugin: calico
-calico_version: "v3.26.0"
+calico_version: "3.30.5"
 calico_ipip_mode: "Never"
 calico_vxlan_mode: "Always"
 calico_network_backend: "vxlan"
