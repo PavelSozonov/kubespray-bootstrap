@@ -30,3 +30,8 @@ ingress_publish_service: ""
 # Resource limits for small nodes (1 CPU, 2GB RAM)
 kubelet_max_pods: 50
 kubelet_pods_cgroup: "/kubepods"
+
+# Ignore some kubeadm preflight errors (lab-only, not recommended for prod)
+# This allows control-plane on 1 vCPU by ignoring NumCPU check.
+kubeadm_ignore_preflight_errors:
+  - NumCPU
