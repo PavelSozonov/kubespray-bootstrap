@@ -1,0 +1,5 @@
+# etcd configuration
+# Optimized for small nodes (1 CPU, 2GB RAM)
+
+etcd_memory_limit: "512M"
+etcd_quota_backend_bytes: 2147483648  # 2GB

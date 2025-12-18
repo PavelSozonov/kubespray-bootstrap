@@ -1,0 +1,2 @@
+# This file ensures the artifacts directory is tracked by git
+# Actual artifacts (kubeconfig, logs, etc.) are in .gitignore

@@ -1,0 +1,26 @@
+# Example inventory group_vars/all/all.yml
+# Copy this to inventory/cluster/group_vars/all/all.yml and adjust
+
+# SSH user (should match .env SSH_USER)
+ansible_user: root
+
+# Container runtime
+container_manager: containerd
+
+# System configuration
+override_system_hostname: true
+disable_swap: true
+
+# Network configuration
+# Adjust interface name if needed (e.g., eth0, ens3, etc.)
+kube_interface: "eth0"
+
+# kube-vip configuration
+# VIP address for HA API server (should match .env KUBE_VIP_VIP)
+kube_vip_vip: "10.0.0.100"
+# Interface for kube-vip ARP (should match .env KUBE_VIP_INTERFACE)
+kube_vip_interface: "eth0"
+# Enable kube-vip
+kube_vip_enabled: true
+kube_vip_mode: "arp"
+kube_vip_arp: true

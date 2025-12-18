@@ -1,0 +1,42 @@
+# Global configuration for all nodes
+# These values can be overridden in inventory/cluster/group_vars/all/all.yml
+
+# Container runtime
+container_manager: containerd
+
+# System configuration
+override_system_hostname: false
+disable_swap: true
+
+# Network interface (default, override in inventory if needed)
+kube_interface: "eth0"
+
+# kube-vip configuration
+# These should be set via inventory/cluster/group_vars/all/all.yml or .env
+kube_vip_enabled: true
+kube_vip_mode: "arp"
+kube_vip_arp: true
+# kube_vip_vip and kube_vip_interface should be set in inventory
+
+# Image registry configuration
+# For test/lab, upstream registries are used.
+# For air-gapped/prod, override *_internal and set use_internal_registry: true
+
+# Toggle to switch all image pulls to an internal registry
+use_internal_registry: false
+
+# Upstream (public) registries used by default
+upstream_kube_image_repo: "registry.k8s.io"
+upstream_docker_registry_mirror: "https://registry-1.docker.io"
+
+# Placeholders for internal registries (override in inventory/cluster for prod/air-gapped)
+internal_kube_image_repo: ""
+internal_docker_registry_mirror: ""
+
+# Effective values used by Kubespray / container runtime
+# Core Kubernetes images
+kube_image_repo: "{{ internal_kube_image_repo if use_internal_registry and internal_kube_image_repo else upstream_kube_image_repo }}"
+
+# Docker registry mirrors (mainly for Docker runtime; for containerd see Kubespray docs)
+docker_registry_mirrors: >-
+  {{ [ internal_docker_registry_mirror ] if use_internal_registry and internal_docker_registry_mirror else [] }}

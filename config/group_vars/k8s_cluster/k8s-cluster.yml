@@ -1,0 +1,25 @@
+# Kubernetes cluster configuration
+# These values can be overridden in inventory/cluster/group_vars/k8s_cluster/k8s-cluster.yml
+
+# CNI: Calico
+kube_network_plugin: calico
+calico_version: "v3.26.0"
+calico_ipip_mode: "Never"
+calico_vxlan_mode: "Always"
+calico_network_backend: "vxlan"
+
+# kube-proxy mode: iptables (NOT ipvs)
+kube_proxy_mode: iptables
+
+# Disable heavy addons by default for minimal resource usage
+dashboard_enabled: false
+helm_enabled: false
+local_volume_provisioner_enabled: false
+metrics_server_enabled: true
+nodelocaldns_enabled: false
+ingress_nginx_enabled: false
+ingress_publish_service: ""
+
+# Resource limits for small nodes (1 CPU, 2GB RAM)
+kubelet_max_pods: 50
+kubelet_pods_cgroup: "/kubepods"

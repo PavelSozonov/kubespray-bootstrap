@@ -1,0 +1,48 @@
+# Private inventory
+inventory/cluster/
+
+# Environment variables
+.env
+.env.local
+
+# SSH keys
+*.key
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.pem
+known_hosts
+
+# Kubernetes config
+kubeconfig
+kubeconfig.*
+artifacts/*
+!artifacts/.gitkeep
+*.kubeconfig
+
+# Ansible artifacts
+*.retry
+.ansible/
+ansible_facts/
+*.fact
+
+# Private IPs and domain files
+hosts.private
+inventory.private
+*.private
+
+# Docker volumes
+.docker/
+
+# Temporary files
+*.tmp
+*.log
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

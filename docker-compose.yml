@@ -1,0 +1,18 @@
+services:
+  kubespray:
+    image: ${DOCKER_IMAGE:-quay.io/kubespray/kubespray:v2.29.1}
+    container_name: kubespray-runner
+    volumes:
+      - ${INVENTORY_PATH:-inventory/cluster}:/inventory:ro
+      - ${SSH_KEY_PATH:-~/.ssh/id_ed25519}:/root/.ssh/id_rsa:ro
+      - ./artifacts:/artifacts
+      - ./scripts:/scripts:ro
+    environment:
+      - ANSIBLE_HOST_KEY_CHECKING=False
+      - USER_ID=${DOCKER_USER:-1000}
+      - GROUP_ID=${DOCKER_GROUP:-1000}
+    working_dir: /kubespray
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    network_mode: host
