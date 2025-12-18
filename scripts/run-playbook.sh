@@ -6,7 +6,10 @@ set -e
 
 # Load environment variables
 if [ -f .env ]; then
-    export $(cat .env | grep -v '^#' | xargs)
+    # shellcheck disable=SC2046,SC1091
+    set -a
+    . .env
+    set +a
 fi
 
 PLAYBOOK=${1:-cluster.yml}
@@ -64,6 +67,8 @@ docker run --rm -it \
     "$DOCKER_IMAGE" \
     ansible-playbook \
         -i /inventory/hosts.yaml \
+        --become \
+        --become-user=root \
         -e ansible_user=${SSH_USER:-root} \
         -e ansible_ssh_private_key_file=/root/.ssh/id_rsa \
         $EXTRA_ARGS \

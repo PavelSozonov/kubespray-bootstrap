@@ -4,7 +4,10 @@ set -e
 
 # Load environment variables
 if [ -f .env ]; then
-    export $(cat .env | grep -v '^#' | xargs)
+    # shellcheck disable=SC2046,SC1091
+    set -a
+    . .env
+    set +a
 fi
 
 INVENTORY_PATH=${INVENTORY_PATH:-inventory/cluster}
